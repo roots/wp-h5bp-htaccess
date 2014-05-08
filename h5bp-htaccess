@@ -39,7 +39,7 @@
 # http://enable-cors.org/
 
 # <IfModule mod_headers.c>
-# Header set Access-Control-Allow-Origin "*"
+#     Header set Access-Control-Allow-Origin "*"
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -103,7 +103,7 @@
 # http://www.w3.org/TR/2000/CR-P3P-20001215/
 
 # <IfModule mod_headers.c>
-# Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
+#     Header set P3P "policyref=\"/w3c/p3p.xml\", CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\""
 # </IfModule>
 
 
@@ -250,10 +250,10 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Clickjacking
 
 # <IfModule mod_headers.c>
-# Header set X-Frame-Options "DENY"
-# <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
-# Header unset X-Frame-Options
-# </FilesMatch>
+#     Header set X-Frame-Options "DENY"
+#     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+#         Header unset X-Frame-Options
+#     </FilesMatch>
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -275,10 +275,10 @@ AddDefaultCharset utf-8
 # use an online CSP header generator such as: http://cspisawesome.com/.
 
 # <IfModule mod_headers.c>
-# Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
-# <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
-# Header unset Content-Security-Policy
-# </FilesMatch>
+#     Header set Content-Security-Policy "script-src 'self'; object-src 'self'"
+#     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+#         Header unset Content-Security-Policy
+#     </FilesMatch>
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -335,6 +335,23 @@ AddDefaultCharset utf-8
 
 </FilesMatch>
 
+# Block access to WordPress files that reveal version information.
+<FilesMatch "^(wp-config\.php|readme\.html|license\.txt)">
+
+    # Apache < 2.3
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+        Satisfy All
+    </IfModule>
+
+    # Apache ≥ 2.3
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+
 # ------------------------------------------------------------------------------
 # | Reducing MIME type security risks |
 # ------------------------------------------------------------------------------
@@ -390,11 +407,11 @@ AddDefaultCharset utf-8
 # https://www.owasp.org/index.php/Cross-site_Scripting_%28XSS%29
 
 # <IfModule mod_headers.c>
-# # (1) (2)
-# Header set X-XSS-Protection "1; mode=block"
-# <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
-# Header unset X-XSS-Protection
-# </FilesMatch>
+#     # (1) (2)
+#     Header set X-XSS-Protection "1; mode=block"
+#     <FilesMatch "\.(appcache|atom|crx|css|cur|eot|f4[abpv]|flv|gif|htc|ico|jpe?g|js|json(ld)?|m4[av]|manifest|map|mp4|oex|og[agv]|opus|otf|pdf|png|rdf|rss|safariextz|svgz?|swf|tt[cf]|vcf|vtt|webapp|web[mp]|woff|xml|xpi)$">
+#         Header unset X-XSS-Protection
+#     </FilesMatch>
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -406,8 +423,8 @@ AddDefaultCharset utf-8
 # `https://secure.example.com`.
 
 # <IfModule mod_rewrite.c>
-# RewriteCond %{SERVER_PORT} !^443
-# RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
+#     RewriteCond %{SERVER_PORT} !^443
+#     RewriteRule ^ https://example-domain-please-change-me.com%{REQUEST_URI} [R=301,L]
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -431,7 +448,7 @@ AddDefaultCharset utf-8
 # are not using HTTPS.
 
 # <IfModule mod_headers.c>
-# Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
+#     Header set Strict-Transport-Security "max-age=16070400; includeSubDomains"
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -500,7 +517,7 @@ AddDefaultCharset utf-8
 # http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9.5.
 
 # <IfModule mod_headers.c>
-# Header set Cache-Control "no-transform"
+#     Header set Cache-Control "no-transform"
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -515,8 +532,8 @@ AddDefaultCharset utf-8
 # http://stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring
 
 # <IfModule mod_rewrite.c>
-# RewriteCond %{REQUEST_FILENAME} !-f
-# RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpe?g|gif)$ $1.$3 [L]
+#     RewriteCond %{REQUEST_FILENAME} !-f
+#     RewriteRule ^(.+)\.(\d+)\.(js|css|png|jpe?g|gif)$ $1.$3 [L]
 # </IfModule>
 
 # ------------------------------------------------------------------------------
@@ -535,16 +552,16 @@ AddDefaultCharset utf-8
 # Apache will replace it with the content from the specified files.
 
 # <IfModule mod_include.c>
-# <FilesMatch "\.combined\.js$">
-# Options +Includes
-# AddOutputFilterByType INCLUDES application/javascript application/json
-# SetOutputFilter INCLUDES
-# </FilesMatch>
-# <FilesMatch "\.combined\.css$">
-# Options +Includes
-# AddOutputFilterByType INCLUDES text/css
-# SetOutputFilter INCLUDES
-# </FilesMatch>
+#     <FilesMatch "\.combined\.js$">
+#         Options +Includes
+#         AddOutputFilterByType INCLUDES application/javascript application/json
+#         SetOutputFilter INCLUDES
+#     </FilesMatch>
+#     <FilesMatch "\.combined\.css$">
+#         Options +Includes
+#         AddOutputFilterByType INCLUDES text/css
+#         SetOutputFilter INCLUDES
+#     </FilesMatch>
 # </IfModule>
 
 # END HTML5 Boilerplate
