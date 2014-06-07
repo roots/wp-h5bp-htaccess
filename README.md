@@ -1,5 +1,25 @@
 # HTML5 Boilerplate's .htaccess for WordPress
 
+Add [HTML5 Boilerplate's .htaccess](https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess) to your WordPress installation.
+
+## Installation
+
+If you're [using Composer to manage WordPress](http://roots.io/using-composer-with-wordpress/), add wp-h5bp-htaccess to your project's dependencies. Run:
+
+```sh
+composer require roots/wp-h5bp-htaccess 1.1.0
+```
+
+Or manually add it to your `composer.json`:
+
+```json
+"require": {
+  "php": ">=5.3.0",
+  "wordpress": "3.9.1",
+  "roots/wp-h5bp-htaccess": "1.1.0"
+}
+```
+
 ## Changelog
 
 ### 1.1.0: June 7th, 2014
