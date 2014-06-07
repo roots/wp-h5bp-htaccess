@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name:        HTML5 Boilerplate .htaccess
-Plugin URI:         https://github.com/retlehs/wp-h5bp-htaccess
-Description:        Adds <a href="https://github.com/h5bp/html5-boilerplate/blob/master/.htaccess">HTML5 Boilerplate's .htaccess</a>
+Plugin URI:         https://github.com/roots/wp-h5bp-htaccess
+Description:        Adds <a href="https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess">HTML5 Boilerplate's .htaccess</a>
 Version             1.0.0
-Author:             Ben Word
-Author URI:         http://benword.com/
+Author:             Roots
+Author URI:         http://roots.io/plugins/html5-boilerplate-htaccess/
 License:            MIT License
 License URI:        http://opensource.org/licenses/MIT
 */
