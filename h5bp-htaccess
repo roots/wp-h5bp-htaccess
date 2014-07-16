@@ -8,8 +8,6 @@
 ###   Block access to WordPress files that reveal version information.
 ###
 ### Removed:
-###   Expires headers:      Use W3 Total Cache
-###   ETag removal:         Use W3 Total Cache
 ###   Start rewrite engine: Handled by WordPress
 ###   Suppress/force www:   Handled by WordPress
 ###   Error handling:       Handled by WordPress
