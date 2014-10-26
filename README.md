@@ -1,6 +1,6 @@
-# HTML5 Boilerplate's .htaccess for WordPress
+# HTML5 Boilerplate's `.htaccess` for WordPress
 
-Add [HTML5 Boilerplate's .htaccess](https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess) to your WordPress installation.
+Add [HTML5 Boilerplate's `.htaccess`](https://github.com/h5bp/server-configs-apache) to your WordPress installation.
 
 ## Installation
 
@@ -30,5 +30,5 @@ Or manually add it to your `composer.json`:
 
 ## License
 
-* HTML5 Boilerplate .htaccess: MIT License
+* [Apache Server Configs](https://github.com/h5bp/server-configs-apache): MIT License
 * Everything else: MIT License
