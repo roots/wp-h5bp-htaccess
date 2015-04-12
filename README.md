@@ -1,4 +1,5 @@
 # HTML5 Boilerplate's `.htaccess` for WordPress
+[![Build Status](https://travis-ci.org/roots/wp-h5bp-htaccess.svg)](https://travis-ci.org/roots/wp-h5bp-htaccess)
 
 Add [HTML5 Boilerplate's `.htaccess`](https://github.com/h5bp/server-configs-apache) to your WordPress installation.
 
