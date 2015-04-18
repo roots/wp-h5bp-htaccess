@@ -92,7 +92,7 @@ class ApacheServerConfig {
   }
   
   protected function write() {
-    $server_config_rules = extract_from_markers($wp_htaccess_file, self::MARKER);
+    $server_config_rules = extract_from_markers(self::$wp_htaccess_file, self::MARKER);
     if (empty($server_config_rules)) {
       $server_config_rules = implode('', file(self::$roots_htaccess_file));
       $server_config_rules = str_replace(array_keys(self::$rules_filters), array_values(self::$rules_filters), $server_config_rules);
