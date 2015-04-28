@@ -3,7 +3,7 @@
 /*
 Plugin Name:        HTML5 Boilerplate .htaccess
 Plugin URI:         https://github.com/roots/wp-h5bp-htaccess
-Description:        Adds <a href="https://github.com/h5bp/server-configs-apache/blob/master/src/.htaccess">HTML5 Boilerplate's .htaccess</a>
+Description:        Adds <a href="https://github.com/h5bp/server-configs-apache">HTML5 Boilerplate's .htaccess</a>
 Version             2.0.0
 Author:             Roots
 Author URI:         http://roots.io/plugins/html5-boilerplate-htaccess/
