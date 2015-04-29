@@ -12,7 +12,7 @@ You can install this plugin via the command-line or the WordPress admin panel.
 If you're [using Composer to manage WordPress](https://roots.io/using-composer-with-wordpress/), add wp-h5bp-htaccess to your project's dependencies.
 
 ```sh
-composer require roots/wp-h5bp-htaccess 2.0.0
+composer require roots/wp-h5bp-htaccess 2.0.1
 ```
 
 Then activate the plugin via [wp-cli](http://wp-cli.org/commands/plugin/activate/).
@@ -80,6 +80,10 @@ add_filter('roots/h5bp-htaccess-rules', function($server_config_rules) {
 ```
 
 ## Changelog
+
+### 2.0.1: April 29th, 2015
+* Fix reference error ([#12](https://github.com/roots/wp-h5bp-htaccess/issues/12))
+* Update link to h5bp server config repo ([#13](https://github.com/roots/wp-h5bp-htaccess/issues/13))
 
 ### 2.0.0: April 11th, 2015
 * Update to Apache Server Configs v2.14.0
