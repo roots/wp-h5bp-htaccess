@@ -18,6 +18,7 @@ class ApacheServerConfig {
   const TEXT_DOMAIN = 'roots';
   
   private static $instance;
+  private static $env = 'production';
   
   public static $rules_filters = [];
 
@@ -42,10 +43,10 @@ class ApacheServerConfig {
     self::$mod_rewrite_enabled = got_mod_rewrite();
     self::$home_path = get_home_path();
     self::$wp_htaccess_file = self::$home_path . '.htaccess';
-    self::$roots_htaccess_file = locate_template(['server_configs.conf', 'h5bp-htaccess.conf']);
-    if (!self::$roots_htaccess_file) {
-      self::$roots_htaccess_file = __DIR__ . '/h5bp-htaccess.conf';
-    }
+    
+    self::$env = WP_ENV ?: self::$env;
+
+    self::loadConfFile(self::$env);
     
     if (!$this->verifySetup()) {
       $this->alerts();
@@ -54,7 +55,21 @@ class ApacheServerConfig {
       $this->write();
     }
   }
-  
+
+  private static function loadConfFile($env) {
+    $confFileName = 'server_configs-' . $env . '.conf';
+    self::$roots_htaccess_file = locate_template([$confFileName]);
+    if (!self::$roots_htaccess_file) {
+      self::$roots_htaccess_file = locate_template(['server_configs-production.conf']);
+      if (!self::$roots_htaccess_file) {
+        self::$roots_htaccess_file = locate_template(['server_configs.conf']);
+        if (!self::$roots_htaccess_file) {
+          self::$roots_htaccess_file = __DIR__ . '/h5bp-htaccess.conf';
+        }
+      }
+    }
+  }
+
   public static function setRulesFilters() {
     $home_url = parse_url(is_multisite() ? network_home_url('/') : home_url('/'));
     extract($home_url);
